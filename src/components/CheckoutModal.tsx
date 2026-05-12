@@ -74,8 +74,8 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ plan, onClose }) => {
     }
   };
 
-  const handleZaloConfirm = () => {
-    notifyAdmin('CONFIRMED');
+  const handleZaloConfirm = async () => {
+    await notifyAdmin('CONFIRMED');
     const text = `Chào Quân TradingView, tôi đã thanh toán đơn hàng ${orderId}.\n\n--- THÔNG TIN KHÁCH HÀNG ---\n- Họ tên: ${customerName}\n- SĐT/Zalo: ${customerPhone}\n- Facebook/Link: ${customerFb || 'Không có'}\n\n--- THÔNG TIN GÓI ---\n- Gói: ${plan.name}\n- Số tiền: ${formatCurrency(plan.priceVND)}`;
     const encodedText = encodeURIComponent(text);
     window.open(`https://zalo.me/0583156019?text=${encodedText}`, '_blank');
@@ -107,6 +107,19 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ plan, onClose }) => {
 
         {/* Left Sidebar: Order Details */}
         <div className="md:w-[32%] bg-slate-50 p-6 sm:p-8 border-b md:border-b-0 md:border-r border-slate-100 shrink-0">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="w-10 h-10 bg-slate-900 rounded-xl flex items-center justify-center p-1.5 border border-white/10 shadow-lg">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full text-white">
+                <path d="M12.5 19C14.433 19 16 17.433 16 15.5C16 13.567 14.433 12 12.5 12C12.5 10.067 10.933 8.5 9 8.5C7.067 8.5 5.5 10.067 5.5 12C3.567 12 2 13.567 2 15.5C2 17.433 3.567 19 5.5 19H12.5Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M5.5 15.5L8 13L10.5 15L13.5 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-sm font-black tracking-tight text-slate-900 leading-none">Quân Tradingview</span>
+              <span className="text-[7px] font-black uppercase tracking-widest text-blue-600 mt-1">Official Provider</span>
+            </div>
+          </div>
+
           <div className="inline-flex items-center px-2 py-0.5 bg-blue-50 text-blue-700 text-[9px] font-black uppercase tracking-widest rounded mb-3">
             Thông tin đơn hàng
           </div>
